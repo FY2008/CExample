@@ -6,7 +6,7 @@
  * @Author: 信念D力量
  * @Github: https://www.github.com/fy2008
  * @Date: 2020-08-11 11:54:15
- * @LastEditTime: 2020-08-11 21:29:48
+ * @LastEditTime: 2020-09-05 20:50:24
  * @Description: 简单链表实现，实现一个 student 链表结构
  */
 #include <stdio.h>
@@ -101,6 +101,7 @@ void insert_to_head_node(student_list_t *head, char name[], int age)
  */
 void insert_node_pos(student_list_t *head, int pos, const char *name, int age)
 {
+    // 判断 pos 是否超出链表范畴
     if(pos > 0 && pos < get_list_count(head)){
         student_list_t *pNew = (student_list_t*)malloc(sizeof(student_list_t));
         strcpy(pNew->name, name);
