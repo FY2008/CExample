@@ -6,7 +6,7 @@
  * @Author: 信念D力量
  * @Github: https://www.github.com/fy2008
  * @Date: 2020-09-05 21:49:48
- * @LastEditTime: 2020-09-05 23:26:13
+ * @LastEditTime: 2020-09-09 22:25:16
  * @Description: 循环单链表例子
  */
 #include <stdio.h>
@@ -40,8 +40,6 @@ State list_empty(List_t *list);
 State list_append(List_t *list, Student_t stu);
 State list_insert(List_t *list, int pos, Student_t stu);
 void list_ForEach(List_t *list);
-
-
 
 
 int main(void)
@@ -92,6 +90,7 @@ List_t* list_init(void)
     list->Next = NULL;
     return list;
 }
+
 State list_empty(List_t *list)
 {
     if(list->Next == NULL)
@@ -101,6 +100,7 @@ State list_empty(List_t *list)
         return ERROR;
     }
 }
+
 State list_append(List_t *list, Student_t stu)
 {
     List_t *list_new = (List_t *)malloc(sizeof(List_t));
@@ -121,6 +121,7 @@ State list_append(List_t *list, Student_t stu)
     }
     return OK;
 }
+
 State list_insert(List_t *list, int pos, Student_t stu)
 {
     return OK;
