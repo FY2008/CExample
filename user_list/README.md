@@ -9,3 +9,4 @@
 3. 查询用户 : get_user()
 4. 修改用户 : edit_user()
 
+![双向链表示意图](.\list.png)

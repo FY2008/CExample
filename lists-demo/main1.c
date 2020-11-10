@@ -6,7 +6,7 @@
  * @Author: 信念D力量
  * @Github: https://www.github.com/fy2008
  * @Date: 2020-08-11 11:54:15
- * @LastEditTime: 2020-09-05 20:50:24
+ * @LastEditTime: 2020-11-10 19:43:07
  * @Description: 简单链表实现，实现一个 student 链表结构
  */
 #include <stdio.h>
@@ -92,6 +92,8 @@ void insert_to_head_node(student_list_t *head, char name[], int age)
     student_list_t* pNew = (student_list_t*)malloc(sizeof(student_list_t));
     strcpy(pNew->name, name);
     pNew->age = age;
+
+    // 链表头插发，把pNew 当作第一个数据节点
     pNew->next = head->next;
     head->next = pNew;
 }
