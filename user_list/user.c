@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/user.c
  * @Date: 2020-11-10 15:07:11
- * @LastEditTime: 2020-11-11 01:45:39
+ * @LastEditTime: 2020-11-13 22:41:29
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -24,15 +24,16 @@
  */
 bool user_empty(struct user_t *head)
 {
-    return (head->next == NULL) && (head->prev == NULL);
+    return (head->next == head) && (head->prev == head);
 }
 
 /* 初始化用户 */
 struct user_t* user_init()
 {
     struct user_t *head = (struct user_t *)malloc(sizeof(struct user_t));
-    head->next = NULL;
-    head->prev = NULL;
+    head->next = head;
+    head->prev = head;
+    head->id = 0;
     return head;
 }
 
@@ -47,18 +48,21 @@ void user_append(struct user_t *head, const char *name, Sex sex, int age)
     new_user->prev = NULL;
     new_user->sex = sex;
     new_user->age = age;
+    new_user->id = head->id + 1;
 
     if (user_empty(head)){
         head->next = new_user;
         head->prev = new_user;
         new_user->next = head;
         new_user->prev = head;
+        head->id += 1;
     } else {
         // printf("表为非空\n");
         head->prev->next = new_user;
         new_user->next = head;
         new_user->prev = head->prev;
         head->prev = new_user;
+        head->id += 1;
     }
 }
 
@@ -69,26 +73,43 @@ void user_for_each(struct user_t *head)
     if (user_empty(head)){
         printf("<<<用户列表为空，不能遍历>>>\n");
     } else {
-        struct user_t * loop = head;
-        loop = loop->next;
+        struct user_t * new_user = head;
+        new_user = new_user->next;
         
         // loop 指针指向 head 时退出循环
         // loop 指针一直循环指向下一个节点知道循环够一圈，在此使 loop == head，退出循环
-        while (loop != head)
+        while (new_user != head)
         {
-            printf("姓名：%s\n", loop->name);
-            if (loop->sex == MALE){
-                printf("性别：男\n");
+            printf("ID: %d\t", new_user->id);
+            printf("姓名：%s\t", new_user->name);
+            if (new_user->sex == MALE){
+                printf("性别：男\t");
             } else {
-                printf("性别：女\n");
+                printf("性别：女\t");
             }
-            printf("年龄: %d\n", loop->age);
-            loop = loop->next;
+            printf("年龄: %d\n", new_user->age);
+            new_user = new_user->next;
+        }
+    }
+}
 
-            // 当 loop 指针还没有指向 head 时，打印分割线
-            if(loop != head){
-                printf("-------------------------\n");
-            }  
+/* 反向遍历 */
+void user_for_reverse_each(struct user_t *head)
+{
+    if (user_empty(head)) printf("空链表，无法执行遍历操作！\n");
+    else{
+        struct user_t *new_user = head;
+        new_user = new_user->prev;
+        while (new_user != head){
+            printf("ID: %d\t", new_user->id);
+            printf("姓名：%s\t", new_user->name);
+            if (new_user->sex == MALE){
+                printf("性别：男\t");
+            } else {
+                printf("性别：女\t");
+            }
+            printf("年龄: %d\n", new_user->age);   
+            new_user = new_user->prev;
         }
     }
 }

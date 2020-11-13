@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/main.c
  * @Date: 2020-11-10 15:08:19
- * @LastEditTime: 2020-11-11 01:48:34
+ * @LastEditTime: 2020-11-13 22:26:16
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -36,18 +36,20 @@ int main()
 
     for(;;)
     {
-        printf("(1): 添加用户、(2): 通过用户名查询、(3): 输出说有用户、(4): 退出\n");
+        printf("---------------------------------------------------------\n");
+        printf("(1): 添加用户、(2): 通过用户名查询、(3): 输出所有用户、(4): 反向输出所有用户、(5): 退出\n");
+        printf("---------------------------------------------------------\n");
         printf("请输入您的操作（输入上面括号中的数字):");
         int i=0;
         scanf("%d", &i);
         switch (i)
         {
         case 1:
-            printf("----- 请输入用户名：");
+            printf("请输入用户名>>>");
             scanf("%s", name);
-            printf("----- 请输入用户性别：");
+            printf("请输入用户性别>>>");
             scanf("%s", sex);
-            printf("----- 请输入用户年龄：");
+            printf("请输入用户年龄>>>");
             scanf("%d", &age);
             user_append(h_user, name, to_sex(sex), age);
             break;
@@ -61,6 +63,10 @@ int main()
             user_for_each(h_user);
             break;
         case 4:
+            printf("----------------- 反向 用户列表 ------------------\n");
+            user_for_reverse_each(h_user);
+            break;
+        case 5:
             goto exit_loop;
             break;
         default:
@@ -68,7 +74,6 @@ int main()
         }
     }
     exit_loop:
-    
 
     return 0;
 }

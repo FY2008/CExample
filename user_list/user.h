@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/user.h
  * @Date: 2020-11-10 15:07:03
- * @LastEditTime: 2020-11-11 01:22:59
+ * @LastEditTime: 2020-11-13 22:34:04
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -36,6 +36,7 @@ typedef enum {
 struct user_t {
     struct user_t *prev; // 指向前一个
     char name[USER_NAME_LENGTH];
+    unsigned int id;
     Sex sex;
     int age;
     struct user_t *next; // 指向后一个
@@ -58,6 +59,9 @@ void user_get(struct user_t *head, const char *name);
 
 /* 遍历用户 */
 void user_for_each(struct user_t *head);
+
+/* 反向遍历 */
+void user_for_reverse_each(struct user_t *head);
 
 /* 删除用户 */
 void delete_user();
