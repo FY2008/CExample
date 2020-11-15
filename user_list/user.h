@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/user.h
  * @Date: 2020-11-10 15:07:03
- * @LastEditTime: 2020-11-15 11:32:47
+ * @LastEditTime: 2020-11-15 12:32:31
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -65,10 +65,10 @@ void user_for_each(struct user_t *head);
 void user_for_reverse_each(struct user_t *head);
 
 /* 遍历下一个用户 */
-struct user_t* user_next(struct user_t *head);
+void user_next(struct user_t *new_user, struct user_t **ret);
 
 /* 遍历上一个用户 */
-struct user_t* user_prev(struct user_t *head);
+void user_prev(struct user_t *new_user, struct user_t **ret);
 
 /* 删除用户 */
 void delete_user();

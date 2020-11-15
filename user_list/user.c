@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/user.c
  * @Date: 2020-11-10 15:07:11
- * @LastEditTime: 2020-11-15 11:28:10
+ * @LastEditTime: 2020-11-15 12:32:17
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -117,9 +117,9 @@ void user_for_reverse_each(struct user_t *head)
 }
 
 /* 遍历下一个用户 */
-struct user_t* user_next(struct user_t *head)
+void user_next(struct user_t *new_user, struct user_t **ret)
 {
-    struct user_t *new_user = head;
+    // struct user_t *new_user = head;
     if (new_user->id == 0){
         new_user = new_user->next;
     }
@@ -132,13 +132,12 @@ struct user_t* user_next(struct user_t *head)
     }
     printf("年龄: %d\n", new_user->age);
     new_user = new_user->next;
-    return new_user;
+    *ret = new_user;
 }
 
 /* 遍历上一个用户 */
-struct user_t* user_prev(struct user_t *head)
+void user_prev(struct user_t *new_user, struct user_t **ret)
 {
-    struct user_t *new_user = head;
     if (new_user->id == 0){
         new_user = new_user->prev;
     }
@@ -151,7 +150,7 @@ struct user_t* user_prev(struct user_t *head)
     }
     printf("年龄: %d\n", new_user->age);
     new_user = new_user->prev;
-    return new_user;
+    *ret = new_user;
 }
 
 /**

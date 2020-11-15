@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/main.c
  * @Date: 2020-11-10 15:08:19
- * @LastEditTime: 2020-11-15 11:31:15
+ * @LastEditTime: 2020-11-15 12:32:42
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -65,12 +65,12 @@ int main()
         case 5:
             // 单步查询下一个用户
             printf("------------------ 查询结果 --------------------\n");
-            current_user = user_next(current_user);
+            user_next(current_user, &current_user);
             break;
         case 6:
             // 单步查询上一个用户
             printf("------------------ 查询结果 --------------------\n");
-            current_user = user_prev(current_user);
+            user_prev(current_user, &current_user);
             break;
         case 7:
             // 跳出死循环
