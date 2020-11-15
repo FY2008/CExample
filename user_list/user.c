@@ -4,7 +4,7 @@
  * @Gitee: https://gitee.com/zsf90
  * @FilePath: /CExample/user_list/user.c
  * @Date: 2020-11-10 15:07:11
- * @LastEditTime: 2020-11-13 22:41:29
+ * @LastEditTime: 2020-11-15 11:28:10
  * @LastEditors: Please set LastEditors
  * @Copyright(C): 信念D力量 (freerealmshn@163.com)
  * All Rights Reserved.
@@ -34,6 +34,7 @@ struct user_t* user_init()
     head->next = head;
     head->prev = head;
     head->id = 0;
+    head->count = 0;
     return head;
 }
 
@@ -46,24 +47,25 @@ void user_append(struct user_t *head, const char *name, Sex sex, int age)
     strcpy(new_user->name, name);
     new_user->next = NULL;
     new_user->prev = NULL;
+    new_user->count = 0;
     new_user->sex = sex;
     new_user->age = age;
-    new_user->id = head->id + 1;
 
     if (user_empty(head)){
         head->next = new_user;
         head->prev = new_user;
+        new_user->id = 1;
         new_user->next = head;
         new_user->prev = head;
-        head->id += 1;
     } else {
         // printf("表为非空\n");
         head->prev->next = new_user;
         new_user->next = head;
         new_user->prev = head->prev;
+        new_user->id = new_user->prev->id + 1;
         head->prev = new_user;
-        head->id += 1;
     }
+    head->count += 1;
 }
 
 /* 遍历用户 */
@@ -114,6 +116,44 @@ void user_for_reverse_each(struct user_t *head)
     }
 }
 
+/* 遍历下一个用户 */
+struct user_t* user_next(struct user_t *head)
+{
+    struct user_t *new_user = head;
+    if (new_user->id == 0){
+        new_user = new_user->next;
+    }
+    printf("ID: %d\t", new_user->id);
+    printf("用户名: %s\t", new_user->name);
+    if (new_user->sex == MALE){
+        printf("性别: 男\t");
+    } else {
+        printf("性别: 女\t");
+    }
+    printf("年龄: %d\n", new_user->age);
+    new_user = new_user->next;
+    return new_user;
+}
+
+/* 遍历上一个用户 */
+struct user_t* user_prev(struct user_t *head)
+{
+    struct user_t *new_user = head;
+    if (new_user->id == 0){
+        new_user = new_user->prev;
+    }
+    printf("ID: %d\t", new_user->id);
+    printf("用户名: %s\t", new_user->name);
+    if (new_user->sex == MALE){
+        printf("性别: 男\t");
+    } else {
+        printf("性别: 女\t");
+    }
+    printf("年龄: %d\n", new_user->age);
+    new_user = new_user->prev;
+    return new_user;
+}
+
 /**
  * 根据用户名获取单个用户的信息
  */
@@ -138,6 +178,7 @@ void user_get(struct user_t *head, const char *name)
                 }
                 printf("年龄: %d\n", t_user->age);
             }
+            printf("|------------------------------------------------|\n");
             t_user = t_user->next;
         }
         if (user_count == 0)
