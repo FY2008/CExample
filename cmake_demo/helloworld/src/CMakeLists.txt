@@ -3,6 +3,17 @@
 # 包含库路径
 include_directories(${PROJECT_SOURCE_DIR}/lib)
 
+# 添加宏定义
+add_definitions(
+   -DDEBUG
+)
+
+option(
+    USE_UART
+    "使用串口"
+    False
+)
+
 # 源文件入口路径
 aux_source_directory(./ DIR_SRC)
 

@@ -6,6 +6,14 @@ cmake_minimum_required(VERSION 3.5)
 # 目标程序
 project(zsf_Hello C)
 
+#Message
+message(STATUS "BINARY 路径" ${PROJECT_BINARY_DIR})
+message(STATUS "SOURCE 路径" ${PROJECT_SOURCE_DIR})
+
+add_compile_options(
+    -std=c11
+)
+
 # 添加子目录
 add_subdirectory(./lib)
 add_subdirectory(./src)
